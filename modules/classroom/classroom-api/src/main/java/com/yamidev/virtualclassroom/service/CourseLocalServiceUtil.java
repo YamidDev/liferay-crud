@@ -50,6 +50,28 @@ public class CourseLocalServiceUtil {
 		return getService().addCourse(course);
 	}
 
+	public static com.yamidev.virtualclassroom.model.Course addCourse(
+			long groupId, java.util.Map<java.util.Locale, String> name,
+			String description,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return getService().addCourse(
+			groupId, name, description, serviceContext);
+	}
+
+	public static int countByGroupId(long groupId) {
+		return getService().countByGroupId(groupId);
+	}
+
+	public static int countByU_G(long userId, long groupId) {
+		return getService().countByU_G(userId, groupId);
+	}
+
+	public static int countByUserId(long userId) {
+		return getService().countByUserId(userId);
+	}
+
 	/**
 	 * Creates a new course with the primary key. Does not add the course to the database.
 	 *
@@ -200,6 +222,42 @@ public class CourseLocalServiceUtil {
 		return getService().fetchCourse(courseId);
 	}
 
+	public static java.util.List<com.yamidev.virtualclassroom.model.Course>
+		findByGroupId(long groupId) {
+
+		return getService().findByGroupId(groupId);
+	}
+
+	public static java.util.List<com.yamidev.virtualclassroom.model.Course>
+		findByGroupId(long groupId, int start) {
+
+		return getService().findByGroupId(groupId, start);
+	}
+
+	public static java.util.List<com.yamidev.virtualclassroom.model.Course>
+		findByU_G(long userId, long groupId) {
+
+		return getService().findByU_G(userId, groupId);
+	}
+
+	public static java.util.List<com.yamidev.virtualclassroom.model.Course>
+		findByU_G(long userId, long groupId, int start, int end) {
+
+		return getService().findByU_G(userId, groupId, start, end);
+	}
+
+	public static java.util.List<com.yamidev.virtualclassroom.model.Course>
+		findByUserId(long userId) {
+
+		return getService().findByUserId(userId);
+	}
+
+	public static java.util.List<com.yamidev.virtualclassroom.model.Course>
+		findByUserId(long userId, int start) {
+
+		return getService().findByUserId(userId, start);
+	}
+
 	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery
 		getActionableDynamicQuery() {
 
@@ -282,6 +340,16 @@ public class CourseLocalServiceUtil {
 		com.yamidev.virtualclassroom.model.Course course) {
 
 		return getService().updateCourse(course);
+	}
+
+	public static com.yamidev.virtualclassroom.model.Course updateCourse(
+			long courseId, java.util.Map<java.util.Locale, String> name,
+			String description,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return getService().updateCourse(
+			courseId, name, description, serviceContext);
 	}
 
 	public static CourseLocalService getService() {

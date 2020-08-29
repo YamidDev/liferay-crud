@@ -43,6 +43,32 @@ public class CourseLocalServiceWrapper
 		return _courseLocalService.addCourse(course);
 	}
 
+	@Override
+	public com.yamidev.virtualclassroom.model.Course addCourse(
+			long groupId, java.util.Map<java.util.Locale, String> name,
+			String description,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _courseLocalService.addCourse(
+			groupId, name, description, serviceContext);
+	}
+
+	@Override
+	public int countByGroupId(long groupId) {
+		return _courseLocalService.countByGroupId(groupId);
+	}
+
+	@Override
+	public int countByU_G(long userId, long groupId) {
+		return _courseLocalService.countByU_G(userId, groupId);
+	}
+
+	@Override
+	public int countByUserId(long userId) {
+		return _courseLocalService.countByUserId(userId);
+	}
+
 	/**
 	 * Creates a new course with the primary key. Does not add the course to the database.
 	 *
@@ -202,6 +228,48 @@ public class CourseLocalServiceWrapper
 	}
 
 	@Override
+	public java.util.List<com.yamidev.virtualclassroom.model.Course>
+		findByGroupId(long groupId) {
+
+		return _courseLocalService.findByGroupId(groupId);
+	}
+
+	@Override
+	public java.util.List<com.yamidev.virtualclassroom.model.Course>
+		findByGroupId(long groupId, int start) {
+
+		return _courseLocalService.findByGroupId(groupId, start);
+	}
+
+	@Override
+	public java.util.List<com.yamidev.virtualclassroom.model.Course> findByU_G(
+		long userId, long groupId) {
+
+		return _courseLocalService.findByU_G(userId, groupId);
+	}
+
+	@Override
+	public java.util.List<com.yamidev.virtualclassroom.model.Course> findByU_G(
+		long userId, long groupId, int start, int end) {
+
+		return _courseLocalService.findByU_G(userId, groupId, start, end);
+	}
+
+	@Override
+	public java.util.List<com.yamidev.virtualclassroom.model.Course>
+		findByUserId(long userId) {
+
+		return _courseLocalService.findByUserId(userId);
+	}
+
+	@Override
+	public java.util.List<com.yamidev.virtualclassroom.model.Course>
+		findByUserId(long userId, int start) {
+
+		return _courseLocalService.findByUserId(userId, start);
+	}
+
+	@Override
 	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery
 		getActionableDynamicQuery() {
 
@@ -289,6 +357,17 @@ public class CourseLocalServiceWrapper
 		com.yamidev.virtualclassroom.model.Course course) {
 
 		return _courseLocalService.updateCourse(course);
+	}
+
+	@Override
+	public com.yamidev.virtualclassroom.model.Course updateCourse(
+			long courseId, java.util.Map<java.util.Locale, String> name,
+			String description,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _courseLocalService.updateCourse(
+			courseId, name, description, serviceContext);
 	}
 
 	@Override
