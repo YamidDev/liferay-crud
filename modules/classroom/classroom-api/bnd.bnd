@@ -1,0 +1,10 @@
+Bundle-Name: classroom-api
+Bundle-SymbolicName: com.yamidev.virtualclassroom.api
+Bundle-Version: 1.0.0
+Export-Package:\
+	com.yamidev.virtualclassroom.exception,\
+	com.yamidev.virtualclassroom.model,\
+	com.yamidev.virtualclassroom.service,\
+	com.yamidev.virtualclassroom.service.persistence
+-check: EXPORTS
+-includeresource: META-INF/service.xml=../classroom-service/service.xml
