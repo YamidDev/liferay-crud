@@ -14,9 +14,20 @@
 
 package com.yamidev.virtualclassroom.service.http;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.LocalizationUtil;
+
+import com.yamidev.virtualclassroom.service.CourseServiceUtil;
+
+import java.rmi.RemoteException;
+
+import java.util.Locale;
+import java.util.Map;
+
 /**
  * Provides the SOAP utility for the
- * <code>com.yamidev.virtualclassroom.service.CourseServiceUtil</code> service
+ * <code>CourseServiceUtil</code> service
  * utility. The static methods of this class call the same methods of the
  * service utility. However, the signatures are different because it is
  * difficult for SOAP to support certain types.
@@ -54,4 +65,49 @@ package com.yamidev.virtualclassroom.service.http;
  * @generated
  */
 public class CourseServiceSoap {
+
+	public static com.yamidev.virtualclassroom.model.CourseSoap addCourse(
+			long groupId, String[] nameLanguageIds, String[] nameValues,
+			String description,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws RemoteException {
+
+		try {
+			Map<Locale, String> name = LocalizationUtil.getLocalizationMap(
+				nameLanguageIds, nameValues);
+
+			com.yamidev.virtualclassroom.model.Course returnValue =
+				CourseServiceUtil.addCourse(
+					groupId, name, description, serviceContext);
+
+			return com.yamidev.virtualclassroom.model.CourseSoap.toSoapModel(
+				returnValue);
+		}
+		catch (Exception exception) {
+			_log.error(exception, exception);
+
+			throw new RemoteException(exception.getMessage());
+		}
+	}
+
+	public static com.yamidev.virtualclassroom.model.CourseSoap[] findByGroupId(
+			long groupId)
+		throws RemoteException {
+
+		try {
+			java.util.List<com.yamidev.virtualclassroom.model.Course>
+				returnValue = CourseServiceUtil.findByGroupId(groupId);
+
+			return com.yamidev.virtualclassroom.model.CourseSoap.toSoapModels(
+				returnValue);
+		}
+		catch (Exception exception) {
+			_log.error(exception, exception);
+
+			throw new RemoteException(exception.getMessage());
+		}
+	}
+
+	private static Log _log = LogFactoryUtil.getLog(CourseServiceSoap.class);
+
 }

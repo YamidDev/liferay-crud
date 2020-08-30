@@ -30,6 +30,24 @@ public class CourseServiceWrapper
 		_courseService = courseService;
 	}
 
+	@Override
+	public com.yamidev.virtualclassroom.model.Course addCourse(
+			long groupId, java.util.Map<java.util.Locale, String> name,
+			String description,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _courseService.addCourse(
+			groupId, name, description, serviceContext);
+	}
+
+	@Override
+	public java.util.List<com.yamidev.virtualclassroom.model.Course>
+		findByGroupId(long groupId) {
+
+		return _courseService.findByGroupId(groupId);
+	}
+
 	/**
 	 * Returns the OSGi service identifier.
 	 *

@@ -8,56 +8,53 @@
 
 		<!-- PK fields -->
 
-		<column name="courseId" primary="true" type="long"></column>
+		<column name="courseId" primary="true" type="long"/>
 
 		<!-- Group instance -->
 
-		<column name="groupId" type="long"></column>
+		<column name="groupId" type="long"/>
 
 		<!-- Audit fields -->
 
-		<column name="companyId" type="long"></column>
-		<column name="userId" type="long"></column>
-		<column name="userName" type="String"></column>
-		<column name="createDate" type="Date"></column>
-		<column name="modifiedDate" type="Date"></column>
-        <column name="name" type="String" localized="true"></column>
-        <column name="description" type="String"></column>
+		<column name="companyId" type="long"/>
+		<column name="userId" type="long"/>
+		<column name="userName" type="String"/>
+		<column name="createDate" type="Date"/>
+		<column name="modifiedDate" type="Date"/>
+		<column name="name" type="String" localized="true"/>
+		<column name="description" type="String"/>
         <finder name="UserId" return-type="Collection">
-            <finder-column name="userId"></finder-column>
+			<finder-column name="userId"/>
         </finder>
         <finder name="GroupId" return-type="Collection">
-            <finder-column name="groupId"></finder-column>
+			<finder-column name="groupId"/>
         </finder>
         <finder name="U_G" return-type="Collection">
-            <finder-column name="userId"></finder-column>
-            <finder-column name="groupId"></finder-column>
+			<finder-column name="userId"/>
+			<finder-column name="groupId"/>
         </finder>
 	</entity>
 	<entity name="CourseSession" local-service="true">
-
-
 		<!-- PK fields -->
+		<column name="courseSessionId" primary="true" type="long"/>
 
 		<!-- Group instance -->
-        <column name="courseSessionId" primary="true" type="long"></column>
-
-		<column name="groupId" type="long"></column>
+		<column name="groupId" type="long"/>
 
 		<!-- Audit fields -->
 
-		<column name="companyId" type="long"></column>
-		<column name="userId" type="long"></column>
-		<column name="userName" type="String"></column>
-		<column name="createDate" type="Date"></column>
-		<column name="modifiedDate" type="Date"></column>
-		<column name="title" type="String"></column>
-		<column name="description" type="String"></column>
-		<column name="dueDate" type="Date"></column>
-		<column name="courseId" type="long"></column>
+		<column name="companyId" type="long"/>
+		<column name="userId" type="long"/>
+		<column name="userName" type="String"/>
+		<column name="createDate" type="Date"/>
+		<column name="modifiedDate" type="Date"/>
+		<column name="title" type="String"/>
+		<column name="description" type="String"/>
+		<column name="dueDate" type="Date"/>
+		<column name="courseId" type="long"/>
 
         <finder name="CourseId" return-type="Collection">
-            <finder-column name="courseId"></finder-column>
+			<finder-column name="courseId"/>
         </finder>
 	</entity>
 </service-builder>

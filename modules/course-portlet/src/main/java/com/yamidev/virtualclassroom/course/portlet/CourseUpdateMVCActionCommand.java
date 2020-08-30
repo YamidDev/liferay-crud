@@ -24,7 +24,7 @@ public class CourseUpdateMVCActionCommand implements MVCActionCommand {
     @Override
     public boolean processAction(ActionRequest actionRequest, ActionResponse actionResponse) throws PortletException {
         String courseName = ParamUtil.getString(actionRequest, "name");
-        _log.info("name of course"+courseName);
+        _log.info("name of course "+courseName);
         return true;
     }
 

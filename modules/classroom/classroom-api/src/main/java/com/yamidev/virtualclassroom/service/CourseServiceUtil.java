@@ -37,6 +37,21 @@ public class CourseServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to <code>com.yamidev.virtualclassroom.service.impl.CourseServiceImpl</code> and rerun ServiceBuilder to regenerate this class.
 	 */
+	public static com.yamidev.virtualclassroom.model.Course addCourse(
+			long groupId, java.util.Map<java.util.Locale, String> name,
+			String description,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return getService().addCourse(
+			groupId, name, description, serviceContext);
+	}
+
+	public static java.util.List<com.yamidev.virtualclassroom.model.Course>
+		findByGroupId(long groupId) {
+
+		return getService().findByGroupId(groupId);
+	}
 
 	/**
 	 * Returns the OSGi service identifier.

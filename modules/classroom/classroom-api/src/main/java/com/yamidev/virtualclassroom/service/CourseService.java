@@ -19,8 +19,15 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebService;
 import com.liferay.portal.kernel.security.access.control.AccessControlled;
 import com.liferay.portal.kernel.service.BaseService;
+import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Transactional;
+
+import com.yamidev.virtualclassroom.model.Course;
+
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 import org.osgi.annotation.versioning.ProviderType;
 
@@ -47,6 +54,12 @@ public interface CourseService extends BaseService {
 	 *
 	 * Never modify or reference this interface directly. Always use {@link CourseServiceUtil} to access the course remote service. Add custom service methods to <code>com.yamidev.virtualclassroom.service.impl.CourseServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public Course addCourse(
+			long groupId, Map<Locale, String> name, String description,
+			ServiceContext serviceContext)
+		throws PortalException;
+
+	public List<Course> findByGroupId(long groupId);
 
 	/**
 	 * Returns the OSGi service identifier.
