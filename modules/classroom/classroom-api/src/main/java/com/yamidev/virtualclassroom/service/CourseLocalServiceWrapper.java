@@ -242,6 +242,17 @@ public class CourseLocalServiceWrapper
 	}
 
 	@Override
+	public java.util.List<com.yamidev.virtualclassroom.model.Course>
+		findByKeyWords(
+			long groupId, String keywords, int start, int end,
+			com.liferay.portal.kernel.util.OrderByComparator
+				<com.yamidev.virtualclassroom.model.Course> orderByComparator) {
+
+		return _courseLocalService.findByKeyWords(
+			groupId, keywords, start, end, orderByComparator);
+	}
+
+	@Override
 	public java.util.List<com.yamidev.virtualclassroom.model.Course> findByU_G(
 		long userId, long groupId) {
 

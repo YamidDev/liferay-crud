@@ -235,6 +235,16 @@ public class CourseLocalServiceUtil {
 	}
 
 	public static java.util.List<com.yamidev.virtualclassroom.model.Course>
+		findByKeyWords(
+			long groupId, String keywords, int start, int end,
+			com.liferay.portal.kernel.util.OrderByComparator
+				<com.yamidev.virtualclassroom.model.Course> orderByComparator) {
+
+		return getService().findByKeyWords(
+			groupId, keywords, start, end, orderByComparator);
+	}
+
+	public static java.util.List<com.yamidev.virtualclassroom.model.Course>
 		findByU_G(long userId, long groupId) {
 
 		return getService().findByU_G(userId, groupId);

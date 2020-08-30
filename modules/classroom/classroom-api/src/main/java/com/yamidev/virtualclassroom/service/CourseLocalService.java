@@ -199,6 +199,10 @@ public interface CourseLocalService
 
 	public List<Course> findByGroupId(long groupId, int start);
 
+	public List<Course> findByKeyWords(
+		long groupId, String keywords, int start, int end,
+		OrderByComparator<Course> orderByComparator);
+
 	public List<Course> findByU_G(long userId, long groupId);
 
 	public List<Course> findByU_G(
