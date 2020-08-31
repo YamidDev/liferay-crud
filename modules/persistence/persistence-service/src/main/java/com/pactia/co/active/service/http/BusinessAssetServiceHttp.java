@@ -14,13 +14,22 @@
 
 package com.pactia.co.active.service.http;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.security.auth.HttpPrincipal;
+import com.liferay.portal.kernel.service.http.TunnelUtil;
+import com.liferay.portal.kernel.util.MethodHandler;
+import com.liferay.portal.kernel.util.MethodKey;
+
+import com.pactia.co.active.service.BusinessAssetServiceUtil;
+
 /**
  * Provides the HTTP utility for the
- * <code>com.pactia.co.active.service.BusinessAssetServiceUtil</code> service
+ * <code>BusinessAssetServiceUtil</code> service
  * utility. The
  * static methods of this class calls the same methods of the service utility.
  * However, the signatures are different because it requires an additional
- * <code>com.liferay.portal.kernel.security.auth.HttpPrincipal</code> parameter.
+ * <code>HttpPrincipal</code> parameter.
  *
  * <p>
  * The benefits of using the HTTP utility is that it is fast and allows for
@@ -42,4 +51,92 @@ package com.pactia.co.active.service.http;
  * @generated
  */
 public class BusinessAssetServiceHttp {
+
+	public static com.pactia.co.active.model.BusinessAsset addAsset(
+			HttpPrincipal httpPrincipal, long groupId, String assetCode,
+			String cityId, String assetName, String assetAddress,
+			double squareMeterValue,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext,
+			java.util.Map<java.util.Locale, String> description)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		try {
+			MethodKey methodKey = new MethodKey(
+				BusinessAssetServiceUtil.class, "addAsset",
+				_addAssetParameterTypes0);
+
+			MethodHandler methodHandler = new MethodHandler(
+				methodKey, groupId, assetCode, cityId, assetName, assetAddress,
+				squareMeterValue, serviceContext, description);
+
+			Object returnObj = null;
+
+			try {
+				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
+			}
+			catch (Exception exception) {
+				if (exception instanceof
+						com.liferay.portal.kernel.exception.PortalException) {
+
+					throw (com.liferay.portal.kernel.exception.PortalException)
+						exception;
+				}
+
+				throw new com.liferay.portal.kernel.exception.SystemException(
+					exception);
+			}
+
+			return (com.pactia.co.active.model.BusinessAsset)returnObj;
+		}
+		catch (com.liferay.portal.kernel.exception.SystemException
+					systemException) {
+
+			_log.error(systemException, systemException);
+
+			throw systemException;
+		}
+	}
+
+	public static java.util.List<com.pactia.co.active.model.BusinessAsset>
+		findAll(HttpPrincipal httpPrincipal) {
+
+		try {
+			MethodKey methodKey = new MethodKey(
+				BusinessAssetServiceUtil.class, "findAll",
+				_findAllParameterTypes1);
+
+			MethodHandler methodHandler = new MethodHandler(methodKey);
+
+			Object returnObj = null;
+
+			try {
+				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
+			}
+			catch (Exception exception) {
+				throw new com.liferay.portal.kernel.exception.SystemException(
+					exception);
+			}
+
+			return (java.util.List<com.pactia.co.active.model.BusinessAsset>)
+				returnObj;
+		}
+		catch (com.liferay.portal.kernel.exception.SystemException
+					systemException) {
+
+			_log.error(systemException, systemException);
+
+			throw systemException;
+		}
+	}
+
+	private static Log _log = LogFactoryUtil.getLog(
+		BusinessAssetServiceHttp.class);
+
+	private static final Class<?>[] _addAssetParameterTypes0 = new Class[] {
+		long.class, String.class, String.class, String.class, String.class,
+		double.class, com.liferay.portal.kernel.service.ServiceContext.class,
+		java.util.Map.class
+	};
+	private static final Class<?>[] _findAllParameterTypes1 = new Class[] {};
+
 }

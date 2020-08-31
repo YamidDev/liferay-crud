@@ -14,9 +14,20 @@
 
 package com.pactia.co.active.service.http;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.LocalizationUtil;
+
+import com.pactia.co.active.service.BusinessAssetServiceUtil;
+
+import java.rmi.RemoteException;
+
+import java.util.Locale;
+import java.util.Map;
+
 /**
  * Provides the SOAP utility for the
- * <code>com.pactia.co.active.service.BusinessAssetServiceUtil</code> service
+ * <code>BusinessAssetServiceUtil</code> service
  * utility. The static methods of this class call the same methods of the
  * service utility. However, the signatures are different because it is
  * difficult for SOAP to support certain types.
@@ -54,4 +65,52 @@ package com.pactia.co.active.service.http;
  * @generated
  */
 public class BusinessAssetServiceSoap {
+
+	public static com.pactia.co.active.model.BusinessAssetSoap addAsset(
+			long groupId, String assetCode, String cityId, String assetName,
+			String assetAddress, double squareMeterValue,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext,
+			String[] descriptionLanguageIds, String[] descriptionValues)
+		throws RemoteException {
+
+		try {
+			Map<Locale, String> description =
+				LocalizationUtil.getLocalizationMap(
+					descriptionLanguageIds, descriptionValues);
+
+			com.pactia.co.active.model.BusinessAsset returnValue =
+				BusinessAssetServiceUtil.addAsset(
+					groupId, assetCode, cityId, assetName, assetAddress,
+					squareMeterValue, serviceContext, description);
+
+			return com.pactia.co.active.model.BusinessAssetSoap.toSoapModel(
+				returnValue);
+		}
+		catch (Exception exception) {
+			_log.error(exception, exception);
+
+			throw new RemoteException(exception.getMessage());
+		}
+	}
+
+	public static com.pactia.co.active.model.BusinessAssetSoap[] findAll()
+		throws RemoteException {
+
+		try {
+			java.util.List<com.pactia.co.active.model.BusinessAsset>
+				returnValue = BusinessAssetServiceUtil.findAll();
+
+			return com.pactia.co.active.model.BusinessAssetSoap.toSoapModels(
+				returnValue);
+		}
+		catch (Exception exception) {
+			_log.error(exception, exception);
+
+			throw new RemoteException(exception.getMessage());
+		}
+	}
+
+	private static Log _log = LogFactoryUtil.getLog(
+		BusinessAssetServiceSoap.class);
+
 }

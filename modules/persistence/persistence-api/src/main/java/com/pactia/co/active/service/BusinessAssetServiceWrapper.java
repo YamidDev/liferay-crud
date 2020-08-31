@@ -32,6 +32,24 @@ public class BusinessAssetServiceWrapper
 		_businessAssetService = businessAssetService;
 	}
 
+	@Override
+	public com.pactia.co.active.model.BusinessAsset addAsset(
+			long groupId, String assetCode, String cityId, String assetName,
+			String assetAddress, double squareMeterValue,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext,
+			java.util.Map<java.util.Locale, String> description)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _businessAssetService.addAsset(
+			groupId, assetCode, cityId, assetName, assetAddress,
+			squareMeterValue, serviceContext, description);
+	}
+
+	@Override
+	public java.util.List<com.pactia.co.active.model.BusinessAsset> findAll() {
+		return _businessAssetService.findAll();
+	}
+
 	/**
 	 * Returns the OSGi service identifier.
 	 *

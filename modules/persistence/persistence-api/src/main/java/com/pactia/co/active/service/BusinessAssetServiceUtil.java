@@ -37,6 +37,23 @@ public class BusinessAssetServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to <code>com.pactia.co.active.service.impl.BusinessAssetServiceImpl</code> and rerun ServiceBuilder to regenerate this class.
 	 */
+	public static com.pactia.co.active.model.BusinessAsset addAsset(
+			long groupId, String assetCode, String cityId, String assetName,
+			String assetAddress, double squareMeterValue,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext,
+			java.util.Map<java.util.Locale, String> description)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return getService().addAsset(
+			groupId, assetCode, cityId, assetName, assetAddress,
+			squareMeterValue, serviceContext, description);
+	}
+
+	public static java.util.List<com.pactia.co.active.model.BusinessAsset>
+		findAll() {
+
+		return getService().findAll();
+	}
 
 	/**
 	 * Returns the OSGi service identifier.

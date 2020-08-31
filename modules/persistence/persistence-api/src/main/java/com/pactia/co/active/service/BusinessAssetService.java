@@ -19,8 +19,15 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebService;
 import com.liferay.portal.kernel.security.access.control.AccessControlled;
 import com.liferay.portal.kernel.service.BaseService;
+import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Transactional;
+
+import com.pactia.co.active.model.BusinessAsset;
+
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 import org.osgi.annotation.versioning.ProviderType;
 
@@ -47,6 +54,13 @@ public interface BusinessAssetService extends BaseService {
 	 *
 	 * Never modify or reference this interface directly. Always use {@link BusinessAssetServiceUtil} to access the business asset remote service. Add custom service methods to <code>com.pactia.co.active.service.impl.BusinessAssetServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public BusinessAsset addAsset(
+			long groupId, String assetCode, String cityId, String assetName,
+			String assetAddress, double squareMeterValue,
+			ServiceContext serviceContext, Map<Locale, String> description)
+		throws PortalException;
+
+	public List<BusinessAsset> findAll();
 
 	/**
 	 * Returns the OSGi service identifier.
