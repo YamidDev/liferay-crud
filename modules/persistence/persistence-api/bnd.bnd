@@ -1,0 +1,10 @@
+Bundle-Name: persistence-api
+Bundle-SymbolicName: com.pactia.co.active.api
+Bundle-Version: 1.0.0
+Export-Package:\
+	com.pactia.co.active.exception,\
+	com.pactia.co.active.model,\
+	com.pactia.co.active.service,\
+	com.pactia.co.active.service.persistence
+-check: EXPORTS
+-includeresource: META-INF/service.xml=../persistence-service/service.xml
