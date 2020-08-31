@@ -15,34 +15,50 @@
 package com.pactia.co.active.service.impl;
 
 import com.liferay.portal.aop.AopService;
-
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.service.ServiceContext;
+import com.pactia.co.active.model.BusinessAsset;
 import com.pactia.co.active.service.base.BusinessAssetLocalServiceBaseImpl;
-
 import org.osgi.service.component.annotations.Component;
 
-/**
- * The implementation of the business asset local service.
- *
- * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the <code>com.pactia.co.active.service.BusinessAssetLocalService</code> interface.
- *
- * <p>
- * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
- * </p>
- *
- * @author Brian Wing Shun Chan
- * @see BusinessAssetLocalServiceBaseImpl
- */
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+
 @Component(
 	property = "model.class.name=com.pactia.co.active.model.BusinessAsset",
 	service = AopService.class
 )
-public class BusinessAssetLocalServiceImpl
-	extends BusinessAssetLocalServiceBaseImpl {
+public class BusinessAssetLocalServiceImpl extends BusinessAssetLocalServiceBaseImpl {
 
-	/*
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this class directly. Use <code>com.pactia.co.active.service.BusinessAssetLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>com.pactia.co.active.service.BusinessAssetLocalServiceUtil</code>.
-	 */
+	public BusinessAsset addAsset(
+			long groupId,
+			String assetCode,
+			String cityId,
+			String assetName,
+			String assetAddress,
+			double squareMeterValue,
+			ServiceContext serviceContext,
+			Map<Locale, String> description
+	) throws PortalException {
+		long businessAssetId = counterLocalService.increment(BusinessAsset.class.getName());
+		BusinessAsset businessAsset = super.createBusinessAsset(businessAssetId);
+		businessAsset.setGroupId(groupId);
+		businessAsset.setUserId(serviceContext.getUserId());
+		businessAsset.setCityId(cityId);
+		businessAsset.setCreateDate(serviceContext.getCreateDate(new Date()));
+		businessAsset.setAssetName(assetName);
+		businessAsset.setAssetAddress(assetAddress);
+		businessAsset.setSquareMeterValue(squareMeterValue);
+		businessAsset.setDescriptionMap(description);
+		User user  = userLocalService.getUser(serviceContext.getUserId());
+		businessAsset.setAssetCode(assetCode);
+		return super.addBusinessAsset(businessAsset);
+	}
+
+	public List<BusinessAsset> findAll(){
+		return businessAssetPersistence.findAll();
+	}
 }

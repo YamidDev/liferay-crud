@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.search.Indexable;
 import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.service.BaseLocalService;
 import com.liferay.portal.kernel.service.PersistedModelLocalService;
+import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
@@ -37,6 +38,8 @@ import com.pactia.co.active.model.BusinessAsset;
 import java.io.Serializable;
 
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 import org.osgi.annotation.versioning.ProviderType;
 
@@ -63,6 +66,11 @@ public interface BusinessAssetLocalService
 	 *
 	 * Never modify or reference this interface directly. Always use {@link BusinessAssetLocalServiceUtil} to access the business asset local service. Add custom service methods to <code>com.pactia.co.active.service.impl.BusinessAssetLocalServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public BusinessAsset addAsset(
+			long groupId, String assetCode, String cityId, String assetName,
+			String assetAddress, double squareMeterValue,
+			ServiceContext serviceContext, Map<Locale, String> description)
+		throws PortalException;
 
 	/**
 	 * Adds the business asset to the database. Also notifies the appropriate model listeners.
@@ -194,6 +202,8 @@ public interface BusinessAssetLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public BusinessAsset fetchBusinessAssetByUuidAndGroupId(
 		String uuid, long groupId);
+
+	public List<BusinessAsset> findAll();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public ActionableDynamicQuery getActionableDynamicQuery();

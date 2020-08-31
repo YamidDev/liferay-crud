@@ -33,6 +33,19 @@ public class BusinessAssetLocalServiceWrapper
 		_businessAssetLocalService = businessAssetLocalService;
 	}
 
+	@Override
+	public com.pactia.co.active.model.BusinessAsset addAsset(
+			long groupId, String assetCode, String cityId, String assetName,
+			String assetAddress, double squareMeterValue,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext,
+			java.util.Map<java.util.Locale, String> description)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _businessAssetLocalService.addAsset(
+			groupId, assetCode, cityId, assetName, assetAddress,
+			squareMeterValue, serviceContext, description);
+	}
+
 	/**
 	 * Adds the business asset to the database. Also notifies the appropriate model listeners.
 	 *
@@ -220,6 +233,11 @@ public class BusinessAssetLocalServiceWrapper
 
 		return _businessAssetLocalService.fetchBusinessAssetByUuidAndGroupId(
 			uuid, groupId);
+	}
+
+	@Override
+	public java.util.List<com.pactia.co.active.model.BusinessAsset> findAll() {
+		return _businessAssetLocalService.findAll();
 	}
 
 	@Override
