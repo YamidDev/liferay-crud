@@ -6,6 +6,6 @@ package com.pactia.co.constants;
 public class ActivePortletKeys {
 
 	public static final String ACTIVE =
-		"com_pactia_co_ActivePortlet";
+		"ACTIVE";
 
 }
