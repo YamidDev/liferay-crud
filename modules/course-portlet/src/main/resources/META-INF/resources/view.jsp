@@ -24,6 +24,9 @@
                 <tr>
                     <td><%= course.getName(locale) %></td>
                     <td><%= course.getDescription() %></td>
+                    <td>
+
+                    <td>
                 </tr>
             <%} %>
 	    </tbody>

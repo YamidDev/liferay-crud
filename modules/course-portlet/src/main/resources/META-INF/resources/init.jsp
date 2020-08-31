@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="aui" uri="http://liferay.com/tld/aui" %>
 <%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.PortalUtil" %>
 <%@page import="com.yamidev.virtualclassroom.model.Course"%>
