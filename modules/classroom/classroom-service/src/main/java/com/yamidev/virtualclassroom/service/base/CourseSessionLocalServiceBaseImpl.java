@@ -40,6 +40,7 @@ import com.liferay.portal.kernel.util.PortalUtil;
 
 import com.yamidev.virtualclassroom.model.CourseSession;
 import com.yamidev.virtualclassroom.service.CourseSessionLocalService;
+import com.yamidev.virtualclassroom.service.persistence.BusinessAssetPersistence;
 import com.yamidev.virtualclassroom.service.persistence.CoursePersistence;
 import com.yamidev.virtualclassroom.service.persistence.CourseSessionPersistence;
 
@@ -400,6 +401,9 @@ public abstract class CourseSessionLocalServiceBaseImpl
 			throw new SystemException(exception);
 		}
 	}
+
+	@Reference
+	protected BusinessAssetPersistence businessAssetPersistence;
 
 	@Reference
 	protected CoursePersistence coursePersistence;

@@ -25,9 +25,11 @@ import java.util.Map;
 public class CourseLocalServiceImpl extends CourseLocalServiceBaseImpl {
 	private int end;
 	public Course addCourse(long groupId, Map<Locale, String> name, String description, ServiceContext serviceContext) throws PortalException {
+
 		long courseId = counterLocalService.increment(Course.class.getName());
 
 		Course course = super.createCourse(courseId);
+		course.setGroupId(groupId);
 		course.setNameMap(name);
 		course.setDescription(description);
 		course.setUserId(serviceContext.getUserId());
@@ -58,6 +60,7 @@ public class CourseLocalServiceImpl extends CourseLocalServiceBaseImpl {
 		return coursePersistence.countByUserId(userId);
 	}
 	public List<Course> findByGroupId(long groupId){
+		System.out.println("Estoy recibiendo el group id: "+groupId);
 		return coursePersistence.findByGroupId(groupId);
 	}
 	public List<Course> findByGroupId(long groupId, int start){

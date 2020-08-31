@@ -57,4 +57,34 @@
 			<finder-column name="courseId"/>
         </finder>
 	</entity>
+	<entity name="BusinessAsset" local-service="true" human-name="Activos del negocio"
+			table="ps_business_asset" uuid="true">
+		<!-- PK fields -->
+		<column name="businessAssetId" primary="true" type="long"/>
+		<!-- Group instance -->
+		<column name="groupId" type="long"/>
+		<!-- Audit fields -->
+		<column name="companyId" type="long"/>
+		<column name="userId" type="long"/>
+		<column name="userName" type="String"/>
+		<column name="createDate" type="Date"/>
+		<column name="modifiedDate" type="Date"/>
+		<column name="assetCode" type="String"/>
+		<column name="assetName" type="String"/>
+		<column name="assetAddress" type="String"/>
+		<column name="squareMeterValue" type="double"/>
+		<column name="internalCode" type="String"/>
+		<column name="markerMap" type="long"/>
+		<column name="description" type="String" localized="true"/>
+		<column name="logo" type="long"/>
+		<column name="latitude" type="double"/>
+		<column name="longitude" type="double"/>
+		<column name="cityId" type="String"/>
+		<finder name="All" return-type="Collection">
+			<finder-column name="groupId"/>
+		</finder>
+		<finder name="AssetCode" return-type="BusinessAsset">
+			<finder-column name="assetCode"/>
+		</finder>
+	</entity>
 </service-builder>
