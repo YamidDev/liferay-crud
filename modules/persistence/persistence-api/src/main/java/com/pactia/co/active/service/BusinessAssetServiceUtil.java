@@ -49,6 +49,12 @@ public class BusinessAssetServiceUtil {
 			squareMeterValue, serviceContext, description);
 	}
 
+	public static com.pactia.co.active.model.BusinessAsset fetchBusinessAsset(
+		long businessAssetId) {
+
+		return getService().fetchBusinessAsset(businessAssetId);
+	}
+
 	public static java.util.List<com.pactia.co.active.model.BusinessAsset>
 		findAll() {
 
@@ -62,6 +68,18 @@ public class BusinessAssetServiceUtil {
 	 */
 	public static String getOSGiServiceIdentifier() {
 		return getService().getOSGiServiceIdentifier();
+	}
+
+	public static com.pactia.co.active.model.BusinessAsset updateBusiness(
+			long businessAssetId, long groupId, String assetCode, String cityId,
+			String assetName, String assetAddress, double squareMeterValue,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext,
+			java.util.Map<java.util.Locale, String> description)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return getService().updateBusiness(
+			businessAssetId, groupId, assetCode, cityId, assetName,
+			assetAddress, squareMeterValue, serviceContext, description);
 	}
 
 	public static BusinessAssetService getService() {

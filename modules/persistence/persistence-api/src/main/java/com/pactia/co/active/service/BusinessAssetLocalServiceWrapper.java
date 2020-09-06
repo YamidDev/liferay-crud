@@ -381,6 +381,19 @@ public class BusinessAssetLocalServiceWrapper
 		return _businessAssetLocalService.getPersistedModel(primaryKeyObj);
 	}
 
+	@Override
+	public com.pactia.co.active.model.BusinessAsset updateBusiness(
+			long businessAssetId, long groupId, String assetCode, String cityId,
+			String assetName, String assetAddress, double squareMeterValue,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext,
+			java.util.Map<java.util.Locale, String> description)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _businessAssetLocalService.updateBusiness(
+			businessAssetId, groupId, assetCode, cityId, assetName,
+			assetAddress, squareMeterValue, serviceContext, description);
+	}
+
 	/**
 	 * Updates the business asset in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	 *

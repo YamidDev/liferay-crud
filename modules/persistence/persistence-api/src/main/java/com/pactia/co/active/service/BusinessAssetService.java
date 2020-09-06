@@ -21,15 +21,14 @@ import com.liferay.portal.kernel.security.access.control.AccessControlled;
 import com.liferay.portal.kernel.service.BaseService;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.transaction.Isolation;
+import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
-
 import com.pactia.co.active.model.BusinessAsset;
+import org.osgi.annotation.versioning.ProviderType;
 
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-
-import org.osgi.annotation.versioning.ProviderType;
 
 /**
  * Provides the remote service interface for BusinessAsset. Methods of this
@@ -60,6 +59,9 @@ public interface BusinessAssetService extends BaseService {
 			ServiceContext serviceContext, Map<Locale, String> description)
 		throws PortalException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public BusinessAsset fetchBusinessAsset(long businessAssetId);
+
 	public List<BusinessAsset> findAll();
 
 	/**
@@ -68,5 +70,11 @@ public interface BusinessAssetService extends BaseService {
 	 * @return the OSGi service identifier
 	 */
 	public String getOSGiServiceIdentifier();
+
+	public BusinessAsset updateBusiness(
+			long businessAssetId, long groupId, String assetCode, String cityId,
+			String assetName, String assetAddress, double squareMeterValue,
+			ServiceContext serviceContext, Map<Locale, String> description)
+		throws PortalException;
 
 }

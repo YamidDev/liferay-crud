@@ -93,6 +93,52 @@ public class BusinessAssetServiceSoap {
 		}
 	}
 
+	public static com.pactia.co.active.model.BusinessAssetSoap updateBusiness(
+			long businessAssetId, long groupId, String assetCode, String cityId,
+			String assetName, String assetAddress, double squareMeterValue,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext,
+			String[] descriptionLanguageIds, String[] descriptionValues)
+		throws RemoteException {
+
+		try {
+			Map<Locale, String> description =
+				LocalizationUtil.getLocalizationMap(
+					descriptionLanguageIds, descriptionValues);
+
+			com.pactia.co.active.model.BusinessAsset returnValue =
+				BusinessAssetServiceUtil.updateBusiness(
+					businessAssetId, groupId, assetCode, cityId, assetName,
+					assetAddress, squareMeterValue, serviceContext,
+					description);
+
+			return com.pactia.co.active.model.BusinessAssetSoap.toSoapModel(
+				returnValue);
+		}
+		catch (Exception exception) {
+			_log.error(exception, exception);
+
+			throw new RemoteException(exception.getMessage());
+		}
+	}
+
+	public static com.pactia.co.active.model.BusinessAssetSoap
+			fetchBusinessAsset(long businessAssetId)
+		throws RemoteException {
+
+		try {
+			com.pactia.co.active.model.BusinessAsset returnValue =
+				BusinessAssetServiceUtil.fetchBusinessAsset(businessAssetId);
+
+			return com.pactia.co.active.model.BusinessAssetSoap.toSoapModel(
+				returnValue);
+		}
+		catch (Exception exception) {
+			_log.error(exception, exception);
+
+			throw new RemoteException(exception.getMessage());
+		}
+	}
+
 	public static com.pactia.co.active.model.BusinessAssetSoap[] findAll()
 		throws RemoteException {
 

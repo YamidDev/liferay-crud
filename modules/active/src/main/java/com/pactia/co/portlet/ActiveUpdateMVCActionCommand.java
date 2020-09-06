@@ -36,6 +36,8 @@ public class ActiveUpdateMVCActionCommand implements MVCActionCommand {
     public boolean processAction(ActionRequest actionRequest, ActionResponse actionResponse) throws PortletException {
 
         try {
+            long businessAssetId = ParamUtil.getLong(actionRequest, "assetId");
+            _log.info("id update: "+ businessAssetId);
             String assetCode = ParamUtil.getString(actionRequest, "assetCode");
             String cityId = ParamUtil.getString(actionRequest, "cityId");
             String assetName = ParamUtil.getString(actionRequest, "assetName");
@@ -45,9 +47,15 @@ public class ActiveUpdateMVCActionCommand implements MVCActionCommand {
             String assetAddress = ParamUtil.getString(actionRequest, "assetAddress");
             double squareMeterValue = ParamUtil.getDouble(actionRequest, "squareMeterValue");
             Map<Locale, String> descripcion = LocalizationUtil.getLocalizationMap(actionRequest, "description");
-            _BusinessAssetService.addAsset(
-                    groupId, assetCode, cityId,
-                    assetName, assetAddress, squareMeterValue,serviceContext,descripcion);
+            if(businessAssetId == 0) {
+                _BusinessAssetService.addAsset(
+                        groupId, assetCode, cityId,
+                        assetName, assetAddress, squareMeterValue, serviceContext, descripcion);
+            }else {
+                _BusinessAssetService.updateBusiness(businessAssetId, groupId, assetCode, cityId,
+                        assetName, assetAddress, squareMeterValue, serviceContext, descripcion
+                );
+            }
             return true;
         } catch (Exception e){
             _log.error(e.getMessage());

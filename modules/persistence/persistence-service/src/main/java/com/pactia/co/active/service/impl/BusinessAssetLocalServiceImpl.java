@@ -58,6 +58,34 @@ public class BusinessAssetLocalServiceImpl extends BusinessAssetLocalServiceBase
 		return super.addBusinessAsset(businessAsset);
 	}
 
+	public BusinessAsset fetchBusinessAsset(long businessAssetId){
+		return super.fetchBusinessAsset(businessAssetId);
+	}
+
+	public BusinessAsset updateBusiness(
+			long businessAssetId,
+			long groupId,
+			String assetCode,
+			String cityId,
+			String assetName,
+			String assetAddress,
+			double squareMeterValue,
+			ServiceContext serviceContext,
+			Map<Locale, String> description
+		) throws PortalException {
+		BusinessAsset businessAsset = getBusinessAsset(businessAssetId);
+		businessAsset.setAssetCode(assetCode);
+		businessAsset.setGroupId(groupId);
+		businessAsset.setUserId(serviceContext.getUserId());
+		businessAsset.setCityId(cityId);
+		businessAsset.setModifiedDate(serviceContext.getModifiedDate(new Date()));
+		businessAsset.setAssetName(assetName);
+		businessAsset.setAssetAddress(assetAddress);
+		businessAsset.setSquareMeterValue(squareMeterValue);
+		businessAsset.setDescriptionMap(description);
+		return updateBusinessAsset(businessAsset);
+	}
+
 	public List<BusinessAsset> findAll(){
 		return businessAssetPersistence.findAll();
 	}

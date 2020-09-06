@@ -302,6 +302,12 @@ public interface BusinessAssetLocalService
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException;
 
+	public BusinessAsset updateBusiness(
+			long businessAssetId, long groupId, String assetCode, String cityId,
+			String assetName, String assetAddress, double squareMeterValue,
+			ServiceContext serviceContext, Map<Locale, String> description)
+		throws PortalException;
+
 	/**
 	 * Updates the business asset in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	 *

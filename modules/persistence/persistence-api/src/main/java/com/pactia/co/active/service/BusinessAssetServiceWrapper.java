@@ -46,6 +46,13 @@ public class BusinessAssetServiceWrapper
 	}
 
 	@Override
+	public com.pactia.co.active.model.BusinessAsset fetchBusinessAsset(
+		long businessAssetId) {
+
+		return _businessAssetService.fetchBusinessAsset(businessAssetId);
+	}
+
+	@Override
 	public java.util.List<com.pactia.co.active.model.BusinessAsset> findAll() {
 		return _businessAssetService.findAll();
 	}
@@ -58,6 +65,19 @@ public class BusinessAssetServiceWrapper
 	@Override
 	public String getOSGiServiceIdentifier() {
 		return _businessAssetService.getOSGiServiceIdentifier();
+	}
+
+	@Override
+	public com.pactia.co.active.model.BusinessAsset updateBusiness(
+			long businessAssetId, long groupId, String assetCode, String cityId,
+			String assetName, String assetAddress, double squareMeterValue,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext,
+			java.util.Map<java.util.Locale, String> description)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _businessAssetService.updateBusiness(
+			businessAssetId, groupId, assetCode, cityId, assetName,
+			assetAddress, squareMeterValue, serviceContext, description);
 	}
 
 	@Override

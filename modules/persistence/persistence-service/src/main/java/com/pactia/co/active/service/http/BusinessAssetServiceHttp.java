@@ -97,13 +97,91 @@ public class BusinessAssetServiceHttp {
 		}
 	}
 
+	public static com.pactia.co.active.model.BusinessAsset updateBusiness(
+			HttpPrincipal httpPrincipal, long businessAssetId, long groupId,
+			String assetCode, String cityId, String assetName,
+			String assetAddress, double squareMeterValue,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext,
+			java.util.Map<java.util.Locale, String> description)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		try {
+			MethodKey methodKey = new MethodKey(
+				BusinessAssetServiceUtil.class, "updateBusiness",
+				_updateBusinessParameterTypes1);
+
+			MethodHandler methodHandler = new MethodHandler(
+				methodKey, businessAssetId, groupId, assetCode, cityId,
+				assetName, assetAddress, squareMeterValue, serviceContext,
+				description);
+
+			Object returnObj = null;
+
+			try {
+				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
+			}
+			catch (Exception exception) {
+				if (exception instanceof
+						com.liferay.portal.kernel.exception.PortalException) {
+
+					throw (com.liferay.portal.kernel.exception.PortalException)
+						exception;
+				}
+
+				throw new com.liferay.portal.kernel.exception.SystemException(
+					exception);
+			}
+
+			return (com.pactia.co.active.model.BusinessAsset)returnObj;
+		}
+		catch (com.liferay.portal.kernel.exception.SystemException
+					systemException) {
+
+			_log.error(systemException, systemException);
+
+			throw systemException;
+		}
+	}
+
+	public static com.pactia.co.active.model.BusinessAsset fetchBusinessAsset(
+		HttpPrincipal httpPrincipal, long businessAssetId) {
+
+		try {
+			MethodKey methodKey = new MethodKey(
+				BusinessAssetServiceUtil.class, "fetchBusinessAsset",
+				_fetchBusinessAssetParameterTypes2);
+
+			MethodHandler methodHandler = new MethodHandler(
+				methodKey, businessAssetId);
+
+			Object returnObj = null;
+
+			try {
+				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
+			}
+			catch (Exception exception) {
+				throw new com.liferay.portal.kernel.exception.SystemException(
+					exception);
+			}
+
+			return (com.pactia.co.active.model.BusinessAsset)returnObj;
+		}
+		catch (com.liferay.portal.kernel.exception.SystemException
+					systemException) {
+
+			_log.error(systemException, systemException);
+
+			throw systemException;
+		}
+	}
+
 	public static java.util.List<com.pactia.co.active.model.BusinessAsset>
 		findAll(HttpPrincipal httpPrincipal) {
 
 		try {
 			MethodKey methodKey = new MethodKey(
 				BusinessAssetServiceUtil.class, "findAll",
-				_findAllParameterTypes1);
+				_findAllParameterTypes3);
 
 			MethodHandler methodHandler = new MethodHandler(methodKey);
 
@@ -137,6 +215,15 @@ public class BusinessAssetServiceHttp {
 		double.class, com.liferay.portal.kernel.service.ServiceContext.class,
 		java.util.Map.class
 	};
-	private static final Class<?>[] _findAllParameterTypes1 = new Class[] {};
+	private static final Class<?>[] _updateBusinessParameterTypes1 =
+		new Class[] {
+			long.class, long.class, String.class, String.class, String.class,
+			String.class, double.class,
+			com.liferay.portal.kernel.service.ServiceContext.class,
+			java.util.Map.class
+		};
+	private static final Class<?>[] _fetchBusinessAssetParameterTypes2 =
+		new Class[] {long.class};
+	private static final Class<?>[] _findAllParameterTypes3 = new Class[] {};
 
 }

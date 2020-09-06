@@ -63,6 +63,26 @@ public class BusinessAssetServiceImpl extends BusinessAssetServiceBaseImpl {
 				squareMeterValue, serviceContext, description);
 	}
 
+	public BusinessAsset updateBusiness(
+			long businessAssetId,
+			long groupId,
+			String assetCode,
+			String cityId,
+			String assetName,
+			String assetAddress,
+			double squareMeterValue,
+			ServiceContext serviceContext,
+			Map<Locale, String> description
+	) throws PortalException{
+		return businessAssetLocalService.updateBusiness(
+				businessAssetId, groupId,assetCode, cityId,
+				assetName, assetAddress, squareMeterValue, serviceContext, description);
+	}
+
+	public BusinessAsset fetchBusinessAsset(long businessAssetId) {
+		return businessAssetLocalService.fetchBusinessAsset(businessAssetId);
+	}
+
 	public List<BusinessAsset> findAll(){
 		return businessAssetLocalService.findAll();
 	}

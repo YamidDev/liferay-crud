@@ -3,9 +3,10 @@
  <liferay-portlet:actionURL var="updateURL" name="<%=ConstantsCommands.UPDATE_ASSET %>">
      <liferay-portlet:param name="backURL" value="<%= currentURL %>"/>
 </liferay-portlet:actionURL>
-<% BusinessAsset businessAsset= null; %>
+<% BusinessAsset businessAsset= (BusinessAsset) renderRequest.getAttribute("businessAsset"); %>
 <aui:form action="${updateURL}">
     <aui:model-context bean="<%=businessAsset %>" model="<%=BusinessAsset.class %>"></aui:model-context>
+    <aui:input name="assetId" type="hidden"></aui:input>
     <aui:input name="assetCode" label="active.code"></aui:input>
     <aui:input name="cityId" label="active.city"></aui:input>
     <aui:input name="assetName" label="active.name"></aui:input>
